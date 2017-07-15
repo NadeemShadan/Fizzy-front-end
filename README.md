@@ -1,7 +1,7 @@
 
-# bikes
+# fizzy-front-end
 
-> a project to store details about bikes
+> an optional front end for the laravel fizzy-blog
 
 ## Build Setup
 
