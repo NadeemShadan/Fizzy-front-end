@@ -5,6 +5,7 @@ import test from '@/components/test'
 import addBike from '@/components/addBike'
 import login from '@/components/auth/login'
 import register from '@/components/auth/register'
+import bios from '@/components/bios'
 
 // Vue.use(Vuetify)
 Vue.use(Router)
@@ -18,17 +19,30 @@ export default new Router({
     },{
       path: '/addMoto',
       name: 'addBike',
-      component: addBike
+      component: addBike,
+      meta :{
+      forAuth:true
+    }
   },
   {
     path: '/login',
     name: 'login',
-    component: login
+    component: login,
+    meta :{
+      forGuest:true
+    }
 },
   {
     path: '/register',
     name: 'register',
-    component: register
+    component: register,
+    meta :{
+      forGuest:true
+    }
+}, {
+    path: '/bios',
+    name: 'bios',
+    component: bios,
 }
 
   ]

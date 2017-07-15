@@ -2,13 +2,13 @@
 <div class="container">
         <div class="col-md-4 col-md-offset-4">
             <div class="panel panel-default">
-                <div class="panel-heading text-center">Login to {{text}}</strong></div>
+                <div class="panel-heading text-center">Login to Fizzy Blog</strong></div>
                 <div class="panel-body">
                        <form>
                             <div class="form-group">
                                 <input type="text" class="form-control" v-model="email" placeholder="User Name"/><br/>
                                 <input type="password" placeholder="password" v-model="password" class="form-control" /><br/>
-                                <button @click="test" class="btn btn-success">Sign in</button>
+                                <button @click="login" class="btn btn-success">Sign in</button>
                             </div>
                        </form>
                 </div>
@@ -22,16 +22,24 @@ export default {
     name:'login',
     data(){
         return{
-    text:'Login to Fizzy Blog',
     email:'',
     password:''
 
         }
     },
     methods: {
-        test (){
-            this.$http.get("http://localhost:8000/api/test").then(function(response){
-                console.log(response)
+        login (){
+            let auth={
+                client_id:2,
+                client_secret:'lvcjbjyeZBXlTteSo5KINmlNmu7m9bJVEaYAHCuG',
+                grant_type:'password',
+                username:this.email,
+                password:this.password
+            }
+            console.log(auth);
+            this.$http.post("oauth/token",auth).then(response=>{
+                console.log(auth.username);
+                this.$auth.setToken(response.body.access_token,response.body.expires_in+Date.now());
             })
         }
     }
